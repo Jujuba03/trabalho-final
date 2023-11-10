@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($conn->query($sql) === TRUE) {
         echo "Usuário atualizado com sucesso. <a href='listar_usuarios.php'><br>Voltar para a lista</a>";
-        echo "<a href='index.php'><br>Voltar para página de login</a>";
+        echo "<a href='index.php'><br>Voltar para página inicial</a>";
         echo "<a href='cadastro.php'><br>Voltar para página de cadastro</a>";
 
     } else {
