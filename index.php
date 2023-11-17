@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRUD de Usuários</title>
+    <title>CRUDs</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,7 +19,9 @@ if (isset($_SESSION['usuario_id'])) {
     echo "<ul>
             <li><a href='listar_usuarios.php'>Listar Usuários</a></li>
             <li><a href='cadastro.php'>Cadastrar Usuário</a></li>
-            <li><a href='login.php'>Login</a></li>
+            <li><a href='login.php'>Login</a></li><br>
+            <li><a href='listar_Brincos.php'>Listar Brincos</a></li><br>
+            <li><a href='cadastroB.php'>Cadastrar Usuário</a></li>
           </ul>";
 }
 ?>
