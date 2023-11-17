@@ -27,6 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (validarLogin($email, $senha)) {
         echo "Login bem-sucedido. Redirecionando...";
+        
     } else {
         echo "Senha incorreta ou usuário não encontrado.";
     }

@@ -10,7 +10,7 @@
 
 <h2>Login</h2>
 
-<form id="loginForm">
+<form id="loginForm" action='verificar_login.php'>
     <label for="email">Email:</label>
     <input type="email" id="email" name="email" required>
 
