@@ -2,7 +2,7 @@
 // listar_brincos.php
 
 // Conecte-se ao banco de dados (substitua pelos seus detalhes de conexão)
-$conn = new mysqli("", "root", "", "chatgpt");
+$conn = new mysqli("localhost", "root", "", "chatgpt");
 
 if ($conn->connect_error) {
     die("Erro de conexão: " . $conn->connect_error);
