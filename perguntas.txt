@@ -1,0 +1,3 @@
+
+crud2:
+1.gostaria que vc me ajudase a fazer um crud em php e ajax para brincos
