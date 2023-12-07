@@ -23,3 +23,27 @@ function realizarLogin() {
         }
     });
 }
+
+// script.js
+
+function realizarLogin() {
+    var formData = $("#loginForm").serialize();
+
+    $.ajax({
+        type: "GET",
+        url: "login.php",
+        data: formData,
+        success: function(response) {
+            $("#resultado").html(response);
+            
+            // Verifica se a resposta é "Login bem-sucedido"
+            if (response.trim() === "Login bem-sucedido!") {
+                // Redireciona para a página listBrincos
+                window.location.href = "listBrincos.php";
+            }
+        },
+        error: function(error) {
+            console.log("Erro na requisição AJAX: " + error);
+        }
+    });
+}
