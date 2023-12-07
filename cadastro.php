@@ -48,6 +48,27 @@ function registrarUsuario() {
     });
 }
 
+function registrarUsuario() {
+    var formData = $("#registroForm").serialize();
+
+    $.ajax({
+        type: "POST",
+        url: "registro.php",
+        data: formData,
+        success: function(response) {
+            $("#resultado").html(response);
+
+            // Se o registro for bem-sucedido, redirecione para a página de login e exiba um alerta
+            if (response === "Usuário registrado com sucesso!") {
+                alert("Usuário registrado com sucesso!");
+                window.location.href = "pagina_de_login.html"; // Substitua "pagina_de_login.html" pelo nome correto do seu arquivo de login
+            }
+        },
+        error: function(error) {
+            console.log("Erro na requisição AJAX: " + error);
+        }
+    });
+}
 </script>
 
 </body>
