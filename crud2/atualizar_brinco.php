@@ -1,5 +1,4 @@
 <?php
-// atualizar_brinco.php
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Recupere os dados do formulário
