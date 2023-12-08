@@ -1,0 +1,420 @@
+User
+<!-- excluir_brinco.php -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excluir Brinco</title>
+    <link href="style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+</head>
+<body>
+
+<h1>Excluir Brinco</h1>
+
+<ul>
+    <!-- Adicione links para outras páginas conforme necessário -->
+    <li><a href="registro_usuario.php">Registrar Usuário</a></li>
+    <li><a href="listar_usuarios.php">Listar Usuários</a></li>
+    <li><a href="editar_usuario.php">Editar Usuário</a></li>
+    <li><a href="registro_brinco.php">Registrar Brinco</a></li>
+</ul>
+
+<p>Você tem certeza de que deseja excluir o brinco "<?= $brinco['nome_brinco'] ?>"?</p>
+<button type="button" onclick="excluirBrinco()">Confirmar Exclusão</button>
+
+<div id="resultado"></div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+function excluirBrinco() {
+    var formData = { id: <?= $brinco['id'] ?> };
+
+    $.ajax({
+        type: "POST",
+        url: "processar_exclusao_brinco.php",
+        data: formData,
+        success: function(response) {
+            $("#resultado").html(response);
+        },
+        error: function(error) {
+            console.log("Erro na requisição AJAX: " + error);
+        }
+    });
+}
+</script>
+
+</body>
+</html>
+faca um excluir anel
+
+User
+<?php
+// listar_brincos.php
+
+// Conecte-se ao banco de dados (substitua pelos seus detalhes de conexão)
+$conn = new mysqli("localhost", "root", "", "chatgpt");
+
+if ($conn->connect_error) {
+    die("Erro de conexão: " . $conn->connect_error);
+}
+
+// Consulta SQL para obter todos os brincos
+$sql = "SELECT * FROM brincos";
+$result = $conn->query($sql);
+
+$conn->close();
+?>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar Brincos</title>
+</head>
+<body>
+
+<h1>Listar Brincos</h1>
+
+<ul>
+    <!-- Exiba os brincos obtidos da consulta SQL -->
+    <?php while ($row = $result->fetch_assoc()): ?>
+        <li>
+            <?= $row['nome_brinco'] ?> - Material: <?= $row['material'] ?>, Cor: <?= $row['cor'] ?>
+            <button type="button" onclick="excluirBrinco(<?= $row['id'] ?>)">Excluir</button>
+        </li>
+    <?php endwhile; ?>
+</ul>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+function excluirBrinco(brincoId) {
+    var confirmarExclusao = confirm("Você tem certeza de que deseja excluir este brinco?");
+    
+    if (confirmarExclusao) {
+        $.ajax({
+            type: "POST",
+            url: "processar_exclusao_brinco.php",
+            data: { id: brincoId },
+            success: function(response) {
+                alert(response);
+                // Atualizar a lista de brincos após a exclusão (recarregar a página ou usar AJAX para atualização dinâmica)
+            },
+            error: function(error) {
+                console.log("Erro na requisição AJAX: " + error);
+            }
+        });
+    }
+}
+</script>
+
+</body>
+</html>
+faca uma listar anel agora
+
+User
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Usuário</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link href="style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+</head>
+<body>
+    
+</body>
+</html>
+
+<?php
+include 'conexao.php';
+
+// Verifica se os dados foram enviados via POST
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nome = $_POST['nome'];
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
+    $enc = password_hash($senha, PASSWORD_DEFAULT);
+
+    $sql = "INSERT INTO usuarios (nome, email, senha) VALUES ('$nome', '$email', '$enc')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Usuário registrado com sucesso.";
+    } else {
+        echo "Erro ao registrar usuário: " . $conn->error;
+    }
+} else {
+    echo "Requisição inválida.";
+}
+
+$conn->close();
+?>
+faca um registar anel agora
+
+User
+<?php
+// excluir_brinco.php
+
+$conn = new mysqli("localhost", "root", "", "chatgpt");
+
+if ($conn->connect_error) {
+    die("Erro de conexão: " . $conn->connect_error);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
+    $brincoId = $_GET['id'];
+    $result = $conn->query("SELECT * FROM brincos WHERE id = $brincoId");
+
+    if ($result->num_rows > 0) {
+        $brinco = $result->fetch_assoc();
+    } else {
+        echo "Brinco não encontrado.";
+        exit;
+    }
+} else {
+    echo "ID do brinco não fornecido.";
+    exit;
+}
+
+$conn->close();
+?>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excluir Brinco</title>
+    <link href="style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+</head>
+<body>
+
+<h1>Excluir Brinco</h1>
+
+<ul>
+    <li><a href="registro_usuario.php">Registrar Usuário</a></li>
+    <li><a href="listar_usuarios.php">Listar Usuários</a></li>
+    <li><a href="editar_usuario.php">Editar Usuário</a></li>
+    <li><a href="registro_brinco.php">Registrar Brinco</a></li>
+</ul>
+
+<p>Você tem certeza de que deseja excluir o brinco "<?= $brinco['nome_brinco'] ?>"?</p>
+<button type="button" onclick="excluirBrinco()">Confirmar Exclusão</button>
+
+<div id="resultado"></div>
+
+<script>
+function excluirBrinco() {
+    var formData = { id: <?= $brinco['id'] ?> };
+
+    $.ajax({
+        type: "POST",
+        url: "processar_exclusao_brinco.php", // Crie este arquivo para processar a exclusão
+        data: formData,
+        success: function(response) {
+            $("#resultado").html(response);
+        },
+        error: function(error) {
+            console.log("Erro na requisição AJAX: " + error);
+        }
+    });
+}
+</script>
+
+</body>
+</html>
+faca um exluir anel agora
+
+2 / 2
+
+
+agora faca um editar anel apardir desse codigo
+<?php
+// editar_brinco.php
+
+$conn = new mysqli("localhost", "root", "", "chatgbt");
+
+if ($conn->connect_error) {
+    die("Erro de conexão: " . $conn->connect_error);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
+    $brincoId = $_GET['id'];
+    $result = $conn->query("SELECT * FROM brincos WHERE id = $brincoId");
+
+    if ($result->num_rows > 0) {
+        $brinco = $result->fetch_assoc();
+    } else {
+        echo "Brinco não encontrado.";
+        exit;
+    }
+} else {
+    echo "ID do brinco não fornecido.";
+    exit;
+}
+
+$conn->close();
+?>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Brinco</title>
+    <link href="style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+</head>
+<body>
+
+<h1>Editar Brinco</h1>
+
+<ul>
+    <li><a href="registro_usuario.php">Registrar Usuário</a></li>
+    <li><a href="listar_usuarios.php">Listar Usuários</a></li>
+    <li><a href="editar_usuario.php">Editar Usuário</a></li>
+    <li><a href="registro_brinco.php">Registrar Brinco</a></li>
+</ul>
+
+<form id="editarBrincoForm">
+    <input type="hidden" name="id" value="<?= $brinco['id'] ?>">
+    
+    <label for="nome_brinco">Nome do Brinco:</label>
+    <input type="text" id="nome_brinco" name="nome_brinco" value="<?= $brinco['nome_brinco'] ?>" required>
+
+    <label for="material">Material:</label>
+    <input type="text" id="material" name="material" value="<?= $brinco['material'] ?>" required>
+
+    <label for="cor">Cor:</label>
+    <input type="text" id="cor" name="cor" value="<?= $brinco['cor'] ?>" required>
+
+    <button type="button" onclick="atualizarBrinco()">Atualizar</button>
+</form>
+
+<div id="resultado"></div>
+
+<script>
+function atualizarBrinco() {
+    var formData = $("#editarBrincoForm").serialize();
+
+    $.ajax({
+        type: "POST",
+        url: "atualizar_brinco.php", // Crie este arquivo para processar a atualização
+        data: formData,
+        success: function(response) {
+            $("#resultado").html(response);
+        },
+        error: function(error) {
+            console.log("Erro na requisição AJAX: " + error);
+        }
+    });
+}
+</script>
+
+</body>
+</html>
+
+User
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Brinco</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link href="style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+</head>
+<body>
+
+<h1>Cadastro de Brinco</h1>
+
+<ul>
+    <li><a href="listar_brincos.php">Listar Brincos</a></li>
+    <li><a href="editar_brinco.php">Editar Brincos</a></li>
+</ul>
+
+<form id="registroForm">
+    <!-- Adicione esses campos ao seu formulário -->
+<label for="nome_brinco">Nome do Brinco:</label>
+<input type="text" id="nome_brinco" name="nome_brinco" required>
+
+<label for="material">Material:</label>
+<input type="text" id="material" name="material" required>
+
+<label for="cor">Cor:</label>
+<input type="text" id="cor" name="cor" required>
+
+    <button type="button" onclick="registrarBrinco()">Cadastrar</button>
+</form>
+
+<div id="resultado"></div>
+
+<script>
+function registrarBrinco() {
+    var formData = $("#registroForm").serialize();
+
+    $.ajax({
+        type: "POST",
+        url: "registro_brinco.php", // Altere o nome do arquivo para "registro_brinco.php"
+        data: formData,
+        success: function(response) {
+            $("#resultado").html(response);
+        },
+        error: function(error) {
+            console.log("Erro na requisição AJAX: " + error);
+        }
+    });
+}
+</script>
+
+
+</body>
+</html>
+apardir desse codigo, crie um cadastar anel com os seguintes requisitos: nome_anel e materil
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUDs</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<?php
+session_start();
+
+if (isset($_SESSION['usuario_id'])) {
+    echo "<h1>Bem-vindo, " . $_SESSION['usuario_nome'] . "!</h1>";
+    echo "<p><a href='logout.php'>Logout</a></p>";
+} else {
+    echo "<h1>CRUD de Usuários</h1>";
+    echo "<ul>
+            <li><a href='listar_usuarios.php'>Listar Usuários</a></li>
+            <li><a href='cadastro.php'>Cadastrar Usuário</a></li>
+            <li><a href='login.php'>Login</a></li><br>
+            <li><a href='listar_Brincos.php'>Listar Brincos</a></li><br>
+            <li><a href='cadastroB.php'>Cadastrar Usuário</a></li>
+          </ul>";
+}
+?>
+
+</body>
+</html>
+nesse codigo add um botao que redireciona o usuario para pasta cred1
+
+
+poderia criar o atualizar_brinco.php e o processar_exclusao_brinco.php com a logica semelhante ao registro_brinco.php
+
+User
+poderia criar o atualizar_brinco.php e o processar_exclusao_brinco.php com a logica semelhante ao php
+
+poderia gerar o listar, excluir e editar desse mesmo crud
+
+poderia analisar o código que irei de mandar e a partir dele fazer um crud de brincos???? 
+
+gostaria que o código fosse em php e html
+
+gostaria que o código fosse em php e html
