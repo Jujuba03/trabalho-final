@@ -178,3 +178,27 @@ $(document).ready(function () {
         return ring;
     }
 });
+// Função para abrir o formulário de edição
+window.openEditForm = function (userId) {
+    // Encontrar o usuário pelo ID
+    var user = findUserById(userId);
+
+    // Preencher o formulário com os dados do usuário
+    populateForm(user);
+
+    // Abrir o formulário
+    $('#form-container').show();
+};
+
+// Função para preencher o formulário com os dados do usuário
+function populateForm(user) {
+    $('#user-id').val(user.id);
+    $('#user-name').val(user.name);
+    $('#user-email').val(user.email);
+}
+// Função para carregar a lista de usuários ao carregar a página
+$(document).ready(function () {
+    loadUserList();
+
+    // Restante do código...
+});

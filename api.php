@@ -116,5 +116,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     http_response_code(405);
     exit('Método não permitido.');
 }
+// Manipulação de solicitações
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    // Obter a lista de usuários
+    echo json_encode($userData);
+} elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Restante do código...
+} elseif ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+    // Restante do código...
+} else {
+    http_response_code(405);
+    exit('Método não permitido.');
+}
 
 ?>

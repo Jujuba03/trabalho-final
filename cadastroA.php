@@ -32,6 +32,12 @@
             <button type="button" onclick="closeForm()">Cancelar</button>
         </form>
     </div>
+    <!-- Lista de Usuários -->
+<div id="user-list-container">
+    <h2>Lista de Usuários</h2>
+    <ul id="user-list"></ul>
+</div>
+
 
 </div>
 
