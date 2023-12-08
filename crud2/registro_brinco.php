@@ -1,6 +1,6 @@
 <?php
 // registro_brinco.php
-
+ 'conexao.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Recupere os dados do formulári
     $nomeBrinco = $_POST['nome_brinco'];

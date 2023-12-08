@@ -1,6 +1,6 @@
 <?php
-
-// Conecte-se ao banco de dados (substitua pelos seus detalhes de conexão)
+include 'conexao.php';
+// Coecte-se ao banco de dados (substitua pelos seus detalhes de conexão)
 $conn = new mysqli("localhost", "root", "", "chatgpt");
 
 if ($conn->connect_error) {

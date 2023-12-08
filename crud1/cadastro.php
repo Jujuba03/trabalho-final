@@ -16,7 +16,7 @@
     <li><a href="editar_usuario.php">Editar Usuário</a></li>
     
 </ul>
-
+<?php include 'conexao.php'; ?>
 <form id="registroForm">
     <label for="nome">Nome:</label>
     <input type="text" id="nome" name="nome" required>

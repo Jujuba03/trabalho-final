@@ -1,5 +1,6 @@
 <?php
 // excluir_anel.php
+include 'conexao.php';
 
 $conn = new mysqli("localhost", "root", "", "chatgpt");
 

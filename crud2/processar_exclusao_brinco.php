@@ -1,6 +1,6 @@
 <?php
 // processar_exclusao_brinco.php
-
+include 'conexao.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Recupere o ID do brinco a ser excluído
     $brincoId = $_POST['id'];

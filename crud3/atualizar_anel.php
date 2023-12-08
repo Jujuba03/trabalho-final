@@ -1,4 +1,5 @@
 <?php
+include 'conexao.php';
 // atualizar_anel.php
 
 $conn = new mysqli("localhost", "root", "", "chatgbt");

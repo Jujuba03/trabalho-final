@@ -23,7 +23,7 @@ $conn->close();
     <title>Listar Brincos</title>
 </head>
 <body>
-
+<?php include 'conexao.php'; ?>
 <h1>Listar Brincos</h1>
 
 <ul>

@@ -1,6 +1,6 @@
 <?php
 // processar_exclusao_brinco.php
-
+include 'conexao.php';
 $conn = new mysqli("localhost", "root", "", "chatgpt");
 
 if ($conn->connect_error) {

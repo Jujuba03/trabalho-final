@@ -8,7 +8,7 @@
     <link href="style.css" type="text/css" rel="stylesheet" media="screen,projection" />
 </head>
 <body>
-
+<?php include 'conexao.php'; ?>
 <h1>Cadastro de Brinco</h1>
 
 <ul>

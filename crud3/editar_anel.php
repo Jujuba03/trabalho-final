@@ -10,7 +10,7 @@
 <body>
 
 <h1>Editar Anel</h1>
-
+<?php include 'conexao.php'; ?>
 <ul>
     <!-- Adicione links para outras páginas conforme necessário -->
     <li><a href="listar_anel.php">Listar Anel</a></li>
