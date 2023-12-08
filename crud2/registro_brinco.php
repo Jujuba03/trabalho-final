@@ -2,7 +2,7 @@
 // registro_brinco.php
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Recupere os dados do formulário
+    // Recupere os dados do formulári
     $nomeBrinco = $_POST['nome_brinco'];
     $material = $_POST['material'];
     $cor = $_POST['cor'];

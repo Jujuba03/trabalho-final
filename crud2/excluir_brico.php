@@ -1,7 +1,7 @@
 <?php
 // excluir_brinco.php
 
-$conn = new mysqli("seu_host_mysql", "seu_usuario_mysql", "sua_senha_mysql", "seu_banco_de_dados");
+$conn = new mysqli("localhost", "root", "", "chatgpt");
 
 if ($conn->connect_error) {
     die("Erro de conexão: " . $conn->connect_error);

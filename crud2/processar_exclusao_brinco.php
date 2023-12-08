@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $brincoId = $_POST['id'];
 
     // Conecte-se ao banco de dados
-    $conn = new mysqli("seu_host_mysql", "seu_usuario_mysql", "sua_senha_mysql", "seu_banco_de_dados");
+    $conn = new mysqli("localhost", "root", "", "chatgpt");
 
     // Verifique a conexão
     if ($conn->connect_error) {
