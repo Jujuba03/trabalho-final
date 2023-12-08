@@ -128,5 +128,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     http_response_code(405);
     exit('Método não permitido.');
 }
+// Manipulação de solicitações
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    // Obter a lista de usuários
+    echo json_encode($userData);
+} elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Restante do código...
+} elseif ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+    // Excluir um usuário
+    $userId = $_GET['user_id'];
+
+    foreach ($userData as $key => $user) {
+        if ($user['id'] == $userId) {
+            unset($userData[$key]);
+            break;
+        }
+    }
+
+    // Reindexar o array após a exclusão
+    $userData = array_values($userData);
+
+    // Atualizar a lista de usuários
+    echo json_encode($userData);
+} else {
+    http_response_code(405);
+    exit('Método não permitido.');
+}
 
 ?>

@@ -202,3 +202,18 @@ $(document).ready(function () {
 
     // Restante do código...
 });
+// Função para excluir um usuário
+window.deleteUser = function (userId) {
+    $.ajax({
+        url: 'api_users.php?user_id=' + userId,
+        type: 'DELETE',
+        dataType: 'json',
+        success: function (data) {
+            // Atualizar a lista de usuários
+            updateUserList(data);
+        },
+        error: function (error) {
+            console.error('Erro ao excluir o usuário:', error.responseText);
+        }
+    });
+};
