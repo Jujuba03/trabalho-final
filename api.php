@@ -65,4 +65,56 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     http_response_code(405);
     exit('Método não permitido.');
 }
+// Manipulação de solicitações
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    // Obter a lista de usuários
+    echo json_encode($userData);
+} elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Adicionar ou editar um usuário
+    $postData = json_decode(file_get_contents("php://input"), true);
+
+    $userId = isset($postData['user_id']) ? $postData['user_id'] : null;
+
+    if ($userId !== null) {
+        // Editar usuário existente
+        foreach ($userData as &$user) {
+            if ($user['id'] == $userId) {
+                $user['name'] = $postData['user_name'];
+                $user['email'] = $postData['user_email'];
+                break;
+            }
+        }
+    } else {
+        // Adicionar novo usuário
+        $newUser = [
+            'id' => count($userData) + 1,
+            'name' => $postData['user_name'],
+            'email' => $postData['user_email'],
+        ];
+        $userData[] = $newUser;
+    }
+
+    // Atualizar a lista de usuários
+    echo json_encode($userData);
+} elseif ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+    // Excluir um usuário
+    $userId = $_GET['user_id'];
+
+    foreach ($userData as $key => $user) {
+        if ($user['id'] == $userId) {
+            unset($userData[$key]);
+            break;
+        }
+    }
+
+    // Reindexar o array após a exclusão
+    $userData = array_values($userData);
+
+    // Atualizar a lista de usuários
+    echo json_encode($userData);
+} else {
+    http_response_code(405);
+    exit('Método não permitido.');
+}
+
 ?>
