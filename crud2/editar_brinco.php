@@ -9,7 +9,7 @@ if ($conn->connect_error) {
 
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
     $brincoId = $_GET['id'];
-    $result = $conn->query("SELECT * FROM brincos WHERE id = $brincoId");
+    $result = $conn->query("SELECT * FROM brinco WHERE id = $brincoId");
 
     if ($result->num_rows > 0) {
         $brinco = $result->fetch_assoc();

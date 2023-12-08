@@ -38,9 +38,8 @@ $conn->close();
 <h1>Excluir Brinco</h1>
 
 <ul>
-    <li><a href="registro_usuario.php">Registrar Usuário</a></li>
-    <li><a href="listar_usuarios.php">Listar Usuários</a></li>
-    <li><a href="editar_usuario.php">Editar Usuário</a></li>
+    <li><a href="listar_brinco.php">Listar Brinco</a></li>
+    <li><a href="editar_brinco.php">Editar Brinco</a></li>
     <li><a href="registro_brinco.php">Registrar Brinco</a></li>
 </ul>
 
