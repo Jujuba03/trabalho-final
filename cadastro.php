@@ -14,6 +14,8 @@
 <ul>
     <li><a href="listar_usuarios.php">Listar Usuários</a></li>
     <li><a href="editar_usuario.php">Editar Usuário</a></li>
+    <li><a href="login.php">Login</a></li>
+
 </ul>
 
 <form id="registroForm">
@@ -61,7 +63,7 @@ function registrarUsuario() {
             // Se o registro for bem-sucedido, redirecione para a página de login e exiba um alerta
             if (response === "Usuário registrado com sucesso!") {
                 alert("Usuário registrado com sucesso!");
-                window.location.href = "pagina_de_login.html"; // Substitua "pagina_de_login.html" pelo nome correto do seu arquivo de login
+                window.location.href = "login.php"; // Substitua "pagina_de_login.html" pelo nome correto do seu arquivo de login
             }
         },
         error: function(error) {
